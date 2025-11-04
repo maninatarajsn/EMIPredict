@@ -718,7 +718,7 @@ elif page == "Admin/Data Management":
 			return tree
 		st.text(list_files_tree(processed_dir))
 	if st.checkbox("Delete a file"):
-	data_files = [f.name for f in Path(processed_dir).iterdir() if f.suffix in ['.csv', '.txt']]
+		data_files = [f.name for f in Path(processed_dir).iterdir() if f.suffix in ['.csv', '.txt']]
 		file_to_delete = st.selectbox("Select file to delete", data_files)
 		if st.button("Confirm delete"):
 			try:
@@ -728,7 +728,7 @@ elif page == "Admin/Data Management":
 				st.error(f"Could not delete file: {e}")
 	st.subheader("Backup processed Folder")
 	if st.button("Backup processed to processed_backup"):
-	backup_dir = str(Path(__file__).parent.joinpath('data', 'processed_backup').resolve())
+		backup_dir = str(Path(__file__).parent.joinpath('data', 'processed_backup').resolve())
 		try:
 			shutil.copytree(processed_dir, backup_dir, dirs_exist_ok=True)
 			st.success(f"Backup completed to {backup_dir}")
