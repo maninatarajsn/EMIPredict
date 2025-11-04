@@ -1,6 +1,6 @@
 # Ensure expected_features is loaded before company_type one-hot encoding
 if 'expected_features' not in locals() and 'expected_features' not in globals():
-	feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
+	feature_file = "data/processed/features_used_classification.txt"
 	import os
 	if os.path.exists(feature_file):
 		with open(feature_file, "r") as f:
@@ -143,7 +143,7 @@ elif page == "EMI Eligibility Prediction":
 
 	# Load expected_features before feature assignments if not already loaded
 	if 'expected_features' not in locals():
-		feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
+		feature_file = "data/processed/features_used_classification.txt"
 		if os.path.exists(feature_file):
 			with open(feature_file, "r") as f:
 				expected_features = [line.strip() for line in f.readlines()]
@@ -180,9 +180,9 @@ elif page == "EMI Eligibility Prediction":
 				locals()[col] = 0
 
 	# Load expected_features before feature assignments, then build input_dict after all variables are set
-	feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
-	scaler_cols_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/scaler_numeric_cols.txt"
-	scaler_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
+	feature_file = "data/processed/features_used_classification.txt"
+	scaler_cols_file = "data/processed/scaler_numeric_cols.txt"
+	scaler_path = "data/processed/standard_scaler.joblib"
 
 	if os.path.exists(feature_file):
 		with open(feature_file, "r") as f:
@@ -353,7 +353,7 @@ elif page == "Maximum EMI Prediction":
 
 	# Ensure expected_features is loaded before one-hot encoding
 	if 'expected_features' not in locals() and 'expected_features' not in globals():
-		feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_regression.txt"
+		feature_file = "data/processed/features_used_regression.txt"
 		import os
 		if os.path.exists(feature_file):
 			with open(feature_file, "r") as f:
@@ -454,9 +454,9 @@ elif page == "Maximum EMI Prediction":
 				locals()[col] = 0
 
 	# Load expected_features before feature assignments, then build input_dict after all variables are set
-	feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_regression.txt"
-	scaler_cols_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/scaler_numeric_cols.txt"
-	scaler_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
+	feature_file = "data/processed/features_used_regression.txt"
+	scaler_cols_file = "data/processed/scaler_numeric_cols.txt"
+	scaler_path = "data/processed/standard_scaler.joblib"
 
 	if os.path.exists(feature_file):
 		with open(feature_file, "r") as f:
@@ -571,7 +571,7 @@ elif page == "Maximum EMI Prediction":
 				import numpy as np
 
 				# Load the target scaler (StandardScaler for max_monthly_emi)
-				scaler_target_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
+				scaler_target_path = "data/processed/scaler_target_max_emi.joblib"
 				import joblib
 				scaler_target = None
 				if os.path.exists(scaler_target_path):
