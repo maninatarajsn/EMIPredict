@@ -1,10 +1,11 @@
 # Ensure expected_features is loaded before company_type one-hot encoding
 if 'expected_features' not in locals() and 'expected_features' not in globals():
+	#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
 	feature_file = "data/processed/features_used_classification.txt"
-	import os
-	if os.path.exists(feature_file):
-		with open(feature_file, "r") as f:
-			expected_features = [line.strip() for line in f.readlines()]
+	from pathlib import Path
+	feature_path = Path(feature_file)
+	if feature_path.exists():
+		expected_features = feature_path.read_text().splitlines()
 	else:
 		expected_features = []
 import mlflow
@@ -143,6 +144,7 @@ elif page == "EMI Eligibility Prediction":
 
 	# Load expected_features before feature assignments if not already loaded
 	if 'expected_features' not in locals():
+		#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
 		feature_file = "data/processed/features_used_classification.txt"
 		if os.path.exists(feature_file):
 			with open(feature_file, "r") as f:
@@ -180,6 +182,9 @@ elif page == "EMI Eligibility Prediction":
 				locals()[col] = 0
 
 	# Load expected_features before feature assignments, then build input_dict after all variables are set
+	#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
+	#scaler_cols_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/scaler_numeric_cols.txt"
+	#scaler_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
 	feature_file = "data/processed/features_used_classification.txt"
 	scaler_cols_file = "data/processed/scaler_numeric_cols.txt"
 	scaler_path = "data/processed/standard_scaler.joblib"
@@ -201,12 +206,13 @@ elif page == "EMI Eligibility Prediction":
 
 	show_debug = st.checkbox("Show debug info (input DataFrames, scaler stats)", value=False)
 
-	if os.path.exists(scaler_cols_file):
-		with open(scaler_cols_file, "r") as f:
-			scaler_numeric_cols = [line.strip() for line in f.readlines()]
+	scaler_cols_path = Path(scaler_cols_file)
+	if scaler_cols_path.exists():
+		scaler_numeric_cols = scaler_cols_path.read_text().splitlines()
 	else:
 		scaler_numeric_cols = []
-	scaler = joblib.load(scaler_path) if os.path.exists(scaler_path) else None
+	scaler_path_obj = Path(scaler_path)
+	scaler = joblib.load(scaler_path) if scaler_path_obj.exists() else None
 
 	# Ensure required scaler columns are present, defaulting to 0 if missing
 	for col in ['emi_x_tenure_requested', 'requested_amount_to_income_ratio']:
@@ -353,11 +359,12 @@ elif page == "Maximum EMI Prediction":
 
 	# Ensure expected_features is loaded before one-hot encoding
 	if 'expected_features' not in locals() and 'expected_features' not in globals():
+		#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_regression.txt"
 		feature_file = "data/processed/features_used_regression.txt"
 		import os
-		if os.path.exists(feature_file):
-			with open(feature_file, "r") as f:
-				expected_features = [line.strip() for line in f.readlines()]
+		feature_path = Path(feature_file)
+		if feature_path.exists():
+			expected_features = feature_path.read_text().splitlines()
 		else:
 			expected_features = []
 
@@ -454,6 +461,9 @@ elif page == "Maximum EMI Prediction":
 				locals()[col] = 0
 
 	# Load expected_features before feature assignments, then build input_dict after all variables are set
+	#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_regression.txt"
+	#scaler_cols_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/scaler_numeric_cols.txt"
+	#scaler_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
 	feature_file = "data/processed/features_used_regression.txt"
 	scaler_cols_file = "data/processed/scaler_numeric_cols.txt"
 	scaler_path = "data/processed/standard_scaler.joblib"
@@ -478,12 +488,13 @@ elif page == "Maximum EMI Prediction":
 
 	show_debug = st.checkbox("Show debug info (input DataFrames, scaler stats)", value=False)
 
-	if os.path.exists(scaler_cols_file):
-		with open(scaler_cols_file, "r") as f:
-			scaler_numeric_cols = [line.strip() for line in f.readlines()]
+	scaler_cols_path = Path(scaler_cols_file)
+	if scaler_cols_path.exists():
+		scaler_numeric_cols = scaler_cols_path.read_text().splitlines()
 	else:
 		scaler_numeric_cols = []
-	scaler = joblib.load(scaler_path) if os.path.exists(scaler_path) else None
+	scaler_path_obj = Path(scaler_path)
+	scaler = joblib.load(scaler_path) if scaler_path_obj.exists() else None
 	# Ensure affordability_ratio and emi_x_tenure columns are present for scaler, default to 0.0 if missing
 	for col in ['affordability_ratio', 'emi_x_tenure']:
 		if col not in input_df.columns:
@@ -571,10 +582,12 @@ elif page == "Maximum EMI Prediction":
 				import numpy as np
 
 				# Load the target scaler (StandardScaler for max_monthly_emi)
+				#scaler_target_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
 				scaler_target_path = "data/processed/scaler_target_max_emi.joblib"
 				import joblib
 				scaler_target = None
-				if os.path.exists(scaler_target_path):
+				scaler_target_path_obj = Path(scaler_target_path)
+				if scaler_target_path_obj.exists():
 					scaler_target = joblib.load(scaler_target_path)
 				y_pred_scaled = float(model.predict(model_input)[0])
 				if scaler_target is not None:
@@ -596,14 +609,14 @@ elif page == "Data Explorer":
 	import os
 	import pandas as pd
 	st.header("Data Explorer")
-	processed_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'processed'))
+	processed_dir = str(Path(__file__).parent.joinpath('data', 'processed').resolve())
 	# List CSV and TXT files in processed folder
-	data_files = [f for f in os.listdir(processed_dir) if f.endswith('.csv') or f.endswith('.txt')]
+	data_files = [f.name for f in Path(processed_dir).iterdir() if f.suffix in ['.csv', '.txt']]
 	if not data_files:
 		st.warning(f"No CSV or TXT files found in processed folder: {processed_dir}")
 	else:
 		selected_file = st.selectbox("Select a file to explore", data_files)
-		file_path = os.path.join(processed_dir, selected_file)
+		file_path = str(Path(processed_dir) / selected_file)
 		st.write(f"Absolute path: {file_path}")
 		if selected_file.endswith('.csv'):
 			@st.cache_data
@@ -689,23 +702,33 @@ elif page == "Admin/Data Management":
 	import os
 	import shutil
 	st.header("Admin & Data Management")
-	processed_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'processed'))
+	processed_dir = str(Path(__file__).parent.joinpath('data', 'processed').resolve())
 	st.subheader("Data File Management (processed folder)")
 	if st.button("List all CSV/TXT files"):
-		data_files = [f for f in os.listdir(processed_dir) if f.endswith('.csv') or f.endswith('.txt')]
-		st.write(data_files)
+		def list_files_tree(root, prefix=""):
+			from pathlib import Path
+			tree = ""
+			files = sorted(Path(root).iterdir())
+			for i, f in enumerate(files):
+				connector = "└── " if i == len(files) - 1 else "├── "
+				tree += f"{prefix}{connector}{f.name}\n"
+				if f.is_dir():
+					extension = "    " if i == len(files) - 1 else "│   "
+					tree += list_files_tree(str(f), prefix + extension)
+			return tree
+		st.text(list_files_tree(processed_dir))
 	if st.checkbox("Delete a file"):
-		data_files = [f for f in os.listdir(processed_dir) if f.endswith('.csv') or f.endswith('.txt')]
+	data_files = [f.name for f in Path(processed_dir).iterdir() if f.suffix in ['.csv', '.txt']]
 		file_to_delete = st.selectbox("Select file to delete", data_files)
 		if st.button("Confirm delete"):
 			try:
-				os.remove(os.path.join(processed_dir, file_to_delete))
+				Path(processed_dir).joinpath(file_to_delete).unlink()
 				st.success(f"Deleted {file_to_delete}")
 			except Exception as e:
 				st.error(f"Could not delete file: {e}")
 	st.subheader("Backup processed Folder")
 	if st.button("Backup processed to processed_backup"):
-		backup_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'processed_backup'))
+	backup_dir = str(Path(__file__).parent.joinpath('data', 'processed_backup').resolve())
 		try:
 			shutil.copytree(processed_dir, backup_dir, dirs_exist_ok=True)
 			st.success(f"Backup completed to {backup_dir}")
