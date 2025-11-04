@@ -1,0 +1,53 @@
+age
+monthly_salary
+years_of_employment
+monthly_rent
+family_size
+dependents
+school_fees
+college_fees
+travel_expenses
+groceries_utilities
+other_monthly_expenses
+existing_loans
+current_emi_amount
+credit_score
+bank_balance
+emergency_fund
+requested_amount
+requested_tenure
+max_monthly_emi
+debt_to_income
+expense_to_income
+affordability_ratio
+requested_amount_to_income_ratio
+credit_history_good
+employment_stable
+gender_Male
+gender_Female
+marital_status_Married
+marital_status_Single
+education_Graduate
+education_High School
+education_Post Graduate
+education_Professional
+employment_type_Government
+employment_type_Private
+employment_type_Self-employed
+company_type_Large Indian
+company_type_MNC
+company_type_Mid-size
+company_type_Small
+company_type_Startup
+house_type_Family
+house_type_Own
+house_type_Rented
+emi_scenario_E-commerce Shopping EMI
+emi_scenario_Education EMI
+emi_scenario_Home Appliances EMI
+emi_scenario_Personal Loan EMI
+emi_scenario_Vehicle EMI
+income_x_credit
+emi_x_tenure
+emi_x_tenure_requested
+emi_eligibility
