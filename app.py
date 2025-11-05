@@ -259,7 +259,6 @@ elif page == "EMI Eligibility Prediction":
 	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiclassifier.pkl"
 	try:
 		model = joblib.load(model_path)
-		st.info("ulla iruken")
 		st.success("Loaded BestEMIClassifier from MLflow (production)")
 	except Exception as e:
 		model = None
@@ -469,18 +468,14 @@ elif page == "Maximum EMI Prediction":
 	#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_regression.txt"
 	#scaler_cols_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/scaler_numeric_cols.txt"
 	#scaler_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
-	feature_file = "data/processed/features_used_regression.txt"
-	scaler_cols_file = "data/processed/scaler_numeric_cols.txt"
-	scaler_path = "data/processed/standard_scaler.joblib"
+	feature_file = root / "EMIPredict_AI" / "data" / "processed" / "features_used_regression.txt"
+	scaler_cols_file = root / "EMIPredict_AI" / "data" / "processed" / "scaler_numeric_cols.txt"
+	scaler_path = root / "EMIPredict_AI" / "data" / "processed" / "standard_scaler.joblib"
 
-	if os.path.exists(feature_file):
-		from pathlib import Path
-		root = Path(__file__).parent
-		feature_file = root / "data" / "processed" / "features_used_regression.txt"
-		if feature_file.exists():
-			expected_features = feature_file.read_text().splitlines()
-		else:
-			expected_features = []
+	if feature_file.exists():
+		expected_features = feature_file.read_text().splitlines()
+	else:
+		expected_features = []
 
 	# ...existing code for all feature assignments...
 
@@ -542,9 +537,9 @@ elif page == "Maximum EMI Prediction":
 
 	# Load MLflow model (BestEMIRegressor, alias production)
 
-	mlflow_model_uri = "models:/BestEMIRegressor@production"
+	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiclassifier.pkl"
 	try:
-		model = mlflow.pyfunc.load_model(mlflow_model_uri)
+		model = joblib.load(model_path)
 		st.success("Loaded BestEMIRegressor from MLflow (production)")
 	except Exception as e:
 		model = None
