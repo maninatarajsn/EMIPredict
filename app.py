@@ -4,6 +4,7 @@ if 'expected_features' not in locals() and 'expected_features' not in globals():
 	feature_file = "data/processed/features_used_classification.txt"
 	from pathlib import Path
 	feature_path = Path(feature_file)
+	st.info(feature_path)
 	if feature_path.exists():
 		expected_features = feature_path.read_text().splitlines()
 	else:
