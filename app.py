@@ -1,4 +1,4 @@
-import streamlib as st
+import streamlit as st
 # Ensure expected_features is loaded before company_type one-hot encoding
 if 'expected_features' not in locals() and 'expected_features' not in globals():
 	#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
