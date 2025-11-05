@@ -188,18 +188,14 @@ elif page == "EMI Eligibility Prediction":
 	#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
 	#scaler_cols_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/scaler_numeric_cols.txt"
 	#scaler_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
-	feature_file = "data/processed/features_used_classification.txt"
-	scaler_cols_file = "data/processed/scaler_numeric_cols.txt"
-	scaler_path = "data/processed/standard_scaler.joblib"
+	feature_file = root / "data" / "processed" / "features_used_classification.txt"
+	scaler_cols_file = root / "data" / "processed" / "scaler_numeric_cols.txt"
+	scaler_path = root / "data" / "processed" / "standard_scaler.joblib"
 
-	if os.path.exists(feature_file):
-		from pathlib import Path
-		root = Path(__file__).parent
-		feature_file = root / "EMIPredict_AI" / "data" / "processed" / "features_used_classification.txt"
-		if feature_file.exists():
-			expected_features = feature_file.read_text().splitlines()
-		else:
-			expected_features = []
+	if feature_file.exists():
+    	expected_features = feature_file.read_text().splitlines()
+	else:
+    	expected_features = []
 
 	# ...existing code for all feature assignments...
 
