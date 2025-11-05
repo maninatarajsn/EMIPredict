@@ -259,6 +259,7 @@ elif page == "EMI Eligibility Prediction":
 	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiclassifier.pkl"
 	try:
 		model = joblib.load(model_path)
+		st.info("ulla iruken")
 		st.success("Loaded BestEMIClassifier from MLflow (production)")
 	except Exception as e:
 		model = None
