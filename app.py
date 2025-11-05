@@ -256,7 +256,7 @@ elif page == "EMI Eligibility Prediction":
 				st.dataframe(scaler_stats)
 
 	# Load MLflow model (BestEMIClassifier, alias production)
-	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiclasifier.pkl"
+	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiclassifier.pkl"
 	try:
 		model = joblib.load(model_path)
 		st.success("Loaded BestEMIClassifier from MLflow (production)")
