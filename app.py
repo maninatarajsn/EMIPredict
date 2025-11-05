@@ -5,14 +5,11 @@ if 'expected_features' not in locals() and 'expected_features' not in globals():
 	feature_file = "data/processed/features_used_classification.txt"
 	from pathlib import Path
 	root = Path(__file__).parent
-	st.info(root)
 	feature_path = root / "EMIPredict_AI" / "data" / "processed" / "features_used_classification.txt"
-	st.info(feature_file)
 	if feature_path.exists():
 		expected_features = feature_path.read_text().splitlines()
 	else:
 		expected_features = []
-	st.info(expected_features)
 import mlflow
 mlflow.set_tracking_uri("http://localhost:5000")
 import streamlit as st
@@ -152,7 +149,7 @@ elif page == "EMI Eligibility Prediction":
 		#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
 		from pathlib import Path
 		root = Path(__file__).parent
-		feature_file = root / "data" / "processed" / "features_used_classification.txt"
+		feature_file = root / "EMIPredict_AI" / "data" / "processed" / "features_used_classification.txt"
 		if feature_file.exists():
 			expected_features = feature_file.read_text().splitlines()
 		else:
@@ -198,7 +195,7 @@ elif page == "EMI Eligibility Prediction":
 	if os.path.exists(feature_file):
 		from pathlib import Path
 		root = Path(__file__).parent
-		feature_file = root / "data" / "processed" / "features_used_classification.txt"
+		feature_file = root / "EMIPredict_AI" / "data" / "processed" / "features_used_classification.txt"
 		if feature_file.exists():
 			expected_features = feature_file.read_text().splitlines()
 		else:
@@ -373,7 +370,7 @@ elif page == "Maximum EMI Prediction":
 		#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_regression.txt"
 		from pathlib import Path
 		root = Path(__file__).parent
-		feature_file = root / "data" / "processed" / "features_used_regression.txt"
+		feature_file = root / "EMIPredict_AI" / "data" / "processed" / "features_used_regression.txt"
 		if feature_file.exists():
 			expected_features = feature_file.read_text().splitlines()
 		else:
@@ -599,7 +596,7 @@ elif page == "Maximum EMI Prediction":
 				#scaler_target_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
 				from pathlib import Path
 				root = Path(__file__).parent
-				scaler_target_path = root / "data" / "processed" / "standard_scaler.joblib"
+				scaler_target_path = root / "EMIPredict_AI" / "data" / "processed" / "standard_scaler.joblib"
 				import joblib
 				scaler_target = None
 				if scaler_target_path.exists():
