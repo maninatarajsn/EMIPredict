@@ -4,7 +4,9 @@ if 'expected_features' not in locals() and 'expected_features' not in globals():
 	#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
 	feature_file = "data/processed/features_used_classification.txt"
 	from pathlib import Path
-	feature_path = Path(feature_file)
+	root = Path(__file__).parent
+	feature_file = root / "data" / "processed" / "features_used_classification.txt"
+	st.info(feature_file)
 	if feature_path.exists():
 		expected_features = feature_path.read_text().splitlines()
 	else:
