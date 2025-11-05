@@ -550,6 +550,7 @@ elif page == "Maximum EMI Prediction":
 		if model is not None:
 			# Ensure max_monthly_emi and affordability_ratio are set to 0 in model input, and emi_eligibility is not passed
 			model_features = [col for col in expected_features if col != 'emi_eligibility']
+			st.info(model_features)
 			model_input = input_df_scaled.reindex(columns=model_features, fill_value=0)
 
 			# Hardcode requested_amount_to_income_ratio and emi_x_tenure_requested before passing to model
