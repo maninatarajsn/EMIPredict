@@ -537,7 +537,7 @@ elif page == "Maximum EMI Prediction":
 
 	# Load MLflow model (BestEMIRegressor, alias production)
 
-	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiclassifier.pkl"
+	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiregressor.pkl"
 	try:
 		model = joblib.load(model_path)
 		st.success("Loaded BestEMIRegressor from MLflow (production)")
