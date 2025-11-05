@@ -210,13 +210,15 @@ elif page == "EMI Eligibility Prediction":
 
 	show_debug = st.checkbox("Show debug info (input DataFrames, scaler stats)", value=False)
 
-	scaler_cols_path = Path(scaler_cols_file)
+	from pathlib import Path
+	root = Path(__file__).parent
+	scaler_cols_path = root / scaler_cols_file
 	if scaler_cols_path.exists():
 		scaler_numeric_cols = scaler_cols_path.read_text().splitlines()
 	else:
 		scaler_numeric_cols = []
-	scaler_path_obj = Path(scaler_path)
-	scaler = joblib.load(scaler_path) if scaler_path_obj.exists() else None
+	scaler_path_obj = root / scaler_path
+	scaler = joblib.load(scaler_path_obj) if scaler_path_obj.exists() else None
 
 	# Ensure required scaler columns are present, defaulting to 0 if missing
 	for col in ['emi_x_tenure_requested', 'requested_amount_to_income_ratio']:
@@ -495,13 +497,13 @@ elif page == "Maximum EMI Prediction":
 
 	show_debug = st.checkbox("Show debug info (input DataFrames, scaler stats)", value=False)
 
-	scaler_cols_path = Path(scaler_cols_file)
+	scaler_cols_path = root / scaler_cols_file
 	if scaler_cols_path.exists():
 		scaler_numeric_cols = scaler_cols_path.read_text().splitlines()
 	else:
 		scaler_numeric_cols = []
-	scaler_path_obj = Path(scaler_path)
-	scaler = joblib.load(scaler_path) if scaler_path_obj.exists() else None
+	scaler_path_obj = root / scaler_path
+	scaler = joblib.load(scaler_path_obj) if scaler_path_obj.exists() else None
 	# Ensure affordability_ratio and emi_x_tenure columns are present for scaler, default to 0.0 if missing
 	for col in ['affordability_ratio', 'emi_x_tenure']:
 		if col not in input_df.columns:
