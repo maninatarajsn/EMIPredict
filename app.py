@@ -592,11 +592,12 @@ elif page == "Maximum EMI Prediction":
 
 				# Load the target scaler (StandardScaler for max_monthly_emi)
 				#scaler_target_path = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/standard_scaler.joblib"
-				scaler_target_path = "data/processed/scaler_target_max_emi.joblib"
+				from pathlib import Path
+				root = Path(__file__).parent
+				scaler_target_path = root / "data" / "processed" / "standard_scaler.joblib"
 				import joblib
 				scaler_target = None
-				scaler_target_path_obj = Path(scaler_target_path)
-				if scaler_target_path_obj.exists():
+				if scaler_target_path.exists():
 					scaler_target = joblib.load(scaler_target_path)
 				y_pred_scaled = float(model.predict(model_input)[0])
 				if scaler_target is not None:
