@@ -6,7 +6,7 @@ if 'expected_features' not in locals() and 'expected_features' not in globals():
 	from pathlib import Path
 	root = Path(__file__).parent
 	st.info(root)
-	feature_path = root / "data" / "processed" / "features_used_classification.txt"
+	feature_path = root / "EMIPredict_AI" / "data" / "processed" / "features_used_classification.txt"
 	st.info(feature_file)
 	if feature_path.exists():
 		expected_features = feature_path.read_text().splitlines()
