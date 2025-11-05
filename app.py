@@ -5,6 +5,7 @@ if 'expected_features' not in locals() and 'expected_features' not in globals():
 	feature_file = "data/processed/features_used_classification.txt"
 	from pathlib import Path
 	root = Path(__file__).parent
+	st.info(root)
 	feature_path = root / "data" / "processed" / "features_used_classification.txt"
 	st.info(feature_file)
 	if feature_path.exists():
