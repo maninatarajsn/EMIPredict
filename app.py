@@ -256,9 +256,9 @@ elif page == "EMI Eligibility Prediction":
 				st.dataframe(scaler_stats)
 
 	# Load MLflow model (BestEMIClassifier, alias production)
-	mlflow_model_uri = "models:/BestEMIClassifier@production"
+	model_path = root / "EMIPredict_AI" / "data" / "processed" / "emiclasifier.pkl"
 	try:
-		model = mlflow.pyfunc.load_model(mlflow_model_uri)
+		model = joblib.load(model_path)
 		st.success("Loaded BestEMIClassifier from MLflow (production)")
 	except Exception as e:
 		model = None
