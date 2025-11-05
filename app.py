@@ -554,10 +554,10 @@ elif page == "Maximum EMI Prediction":
 
 			# Hardcode requested_amount_to_income_ratio and emi_x_tenure_requested before passing to model
 
-			if 'max_monthly_emi' in model_input.columns:
-				model_input['max_monthly_emi'] = 0
-			if 'affordability_ratio' in model_input.columns:
-				model_input['affordability_ratio'] = 0
+			#if 'max_monthly_emi' in model_input.columns:
+			#	model_input['max_monthly_emi'] = 0
+			#if 'affordability_ratio' in model_input.columns:
+			#	model_input['affordability_ratio'] = 0
 			st.header("Model Input DataFrame (for Mani)")
 			st.dataframe(model_input)
 			int_cols = ["credit_history_good", "employment_stable", "gender_Male", "gender_Female"]
