@@ -484,8 +484,8 @@ elif page == "Maximum EMI Prediction":
 		# Prefer local, then global, else 0
 		return locals().get(var, globals().get(var, 0))
 	# Ensure max_monthly_emi is present in expected_features for regressor, but set to 0 in input_dict
-	if 'max_monthly_emi' not in expected_features:
-		expected_features.append('max_monthly_emi')
+	#if 'max_monthly_emi' not in expected_features:
+	#	expected_features.append('max_monthly_emi')
 	input_dict = {col: (0 if col == 'max_monthly_emi' else get_var_value(col)) for col in expected_features}
 	input_df = pd.DataFrame([input_dict])[expected_features]
 
