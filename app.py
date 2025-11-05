@@ -145,10 +145,11 @@ elif page == "EMI Eligibility Prediction":
 	# Load expected_features before feature assignments if not already loaded
 	if 'expected_features' not in locals():
 		#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_classification.txt"
-		feature_file = "data/processed/features_used_classification.txt"
-		if os.path.exists(feature_file):
-			with open(feature_file, "r") as f:
-				expected_features = [line.strip() for line in f.readlines()]
+		from pathlib import Path
+		root = Path(__file__).parent
+		feature_file = root / "data" / "processed" / "features_used_classification.txt"
+		if feature_file.exists():
+			expected_features = feature_file.read_text().splitlines()
 		else:
 			expected_features = []
 
@@ -190,10 +191,13 @@ elif page == "EMI Eligibility Prediction":
 	scaler_path = "data/processed/standard_scaler.joblib"
 
 	if os.path.exists(feature_file):
-		with open(feature_file, "r") as f:
-			expected_features = [line.strip() for line in f.readlines()]
-	else:
-		expected_features = []
+		from pathlib import Path
+		root = Path(__file__).parent
+		feature_file = root / "data" / "processed" / "features_used_classification.txt"
+		if feature_file.exists():
+			expected_features = feature_file.read_text().splitlines()
+		else:
+			expected_features = []
 
 	# ...existing code for all feature assignments...
 
@@ -360,11 +364,11 @@ elif page == "Maximum EMI Prediction":
 	# Ensure expected_features is loaded before one-hot encoding
 	if 'expected_features' not in locals() and 'expected_features' not in globals():
 		#feature_file = "/Users/m0s0pdp/Library/CloudStorage/OneDrive-WalmartInc/Documents/GUVI/EMIPredict_AI/data/processed/features_used_regression.txt"
-		feature_file = "data/processed/features_used_regression.txt"
-		import os
-		feature_path = Path(feature_file)
-		if feature_path.exists():
-			expected_features = feature_path.read_text().splitlines()
+		from pathlib import Path
+		root = Path(__file__).parent
+		feature_file = root / "data" / "processed" / "features_used_regression.txt"
+		if feature_file.exists():
+			expected_features = feature_file.read_text().splitlines()
 		else:
 			expected_features = []
 
@@ -469,10 +473,13 @@ elif page == "Maximum EMI Prediction":
 	scaler_path = "data/processed/standard_scaler.joblib"
 
 	if os.path.exists(feature_file):
-		with open(feature_file, "r") as f:
-			expected_features = [line.strip() for line in f.readlines()]
-	else:
-		expected_features = []
+		from pathlib import Path
+		root = Path(__file__).parent
+		feature_file = root / "data" / "processed" / "features_used_regression.txt"
+		if feature_file.exists():
+			expected_features = feature_file.read_text().splitlines()
+		else:
+			expected_features = []
 
 	# ...existing code for all feature assignments...
 
@@ -735,4 +742,3 @@ elif page == "Admin/Data Management":
 		except Exception as e:
 			st.error(f"Backup failed: {e}")
 	st.subheader("Other Admin Tools")
-
