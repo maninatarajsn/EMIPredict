@@ -608,6 +608,7 @@ elif page == "Maximum EMI Prediction":
 		else:
 			st.warning("Model or scaler not found. Please check model files.")
 
+'''
 elif page == "Data Explorer":
 
 	import os
@@ -739,3 +740,4 @@ elif page == "Admin/Data Management":
 		except Exception as e:
 			st.error(f"Backup failed: {e}")
 	st.subheader("Other Admin Tools")
+	'''
