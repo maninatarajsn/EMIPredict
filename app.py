@@ -21,9 +21,9 @@ page = st.sidebar.radio("Go to", [
 	"Home",
 	"EMI Eligibility Prediction",
 	"Maximum EMI Prediction",
-	"Data Explorer",
-	"Model Performance",
-	"Admin/Data Management"
+	#"Data Explorer",
+	#"Model Performance",
+	#"Admin/Data Management"
 ])
 
 if page == "Home":
